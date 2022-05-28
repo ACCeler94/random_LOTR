@@ -1,5 +1,6 @@
-const races = ['Dwarf', 'Human', 'Elf', 'Hobbit', 'Orc']
+const races = ['a Dwarf', 'a Human', 'an Elf', 'a Hobbit', 'an Orc']
 
+// name packs for each race, Dwarves hid their females so no female dwarven heroes
 const dwarfNames = ['Anar', 'Balin', 'Beli', 'Bifur', 'Bláin', 'Bofur', 'Bombur', 'Borin',
    ' Burin', 'Dáin', 'Dori', 'Durin', 'Dwalin', 'Farin', 'Fíli', 'Flói', 'Frár',
     'Frerin', 'Frór', 'Fundin', 'Gimli', 'Ginar', 'Glóin', 'Gróin', 'Grór',
@@ -57,3 +58,73 @@ const orcNames = ['Azog', 'Bolg', 'Búrz', 'Gazbag', 'Gazduf', 'Gazdush', 'Gazh�
     'Shagug', 'Shagûl', 'Snaga', 'Ufgaz', 'Uflug', 'Uflúk', 'Ufthak', 'Ufzag', 'Ugbag', 'Ugduf', 'Ugdush', 'Ughúr', 'Uglag', 'Uglúk', 'Uglur', 'Ugmuz', 'Ugnag', 'Ugrad', 'Ugrat', 'Ugthak', 'Ugzag', 'Yagaz', 'Yagbug', 'Yagduf', 
     'Yagdush', 'Yaghúr', 'Yaglug', 'Yaglûn', 'Yaglúk', 'Yagmuz', 'Yagor', 'Yagrad', 'Yagrat', 'Yagthak', 'Yaguf', 'Yagug', 'Yagûl', 'Zagbug', 'Zagduf', 'Zagdush', 'Zaghúr', 'Zaglag', 'Zaglug', 'Zaglûn', 'Zaglúk', 'Zagmuz', 
     'Zagrad', 'Zagrat', 'Zagthak', 'Zaguf', 'Zagug']
+
+// weapons used by heroes
+const weapons = ['a One handed sword', 'a Battle axe', 'a Dagger', 'a Bow', 'a Two handed sword', 'a Warhammer', 'a Spear']
+
+// abilities for heroes
+const abilities = [
+    "Berserker's rage - You strike fear into the hearts of your enemies every time when You enter this trance like fury!",
+    "Shapeshifting - You possess a rare ability to change into one of terrifying creatures of The Middle Earth!",
+    "Charismatic leader - Your companions are always motivated and fight twice as hard whenever You are leading them to battle!",
+    "Dual wielding - You are ambidextrous which allows You to use any weapon You like in Your off-hand!",
+    "Spirit-caller - Spirits of Your ancestors will come and help You every time You fight!",
+    "Super reflex - Your naturally heightened senses, improved by years of hard training, allow You to move and react a lot faster than any of Your enemies!",
+    "Unkillable - this nickname was given to You because of Your ability to heal even the most life threatening wounds in no time!",
+]
+
+const maleOrFemale = ['Male', 'Female']
+
+// function for getting random value from an array
+function getRandom(array){
+    let i = Math.floor(Math.random() * array.length)
+    return array[i]
+}
+
+
+
+function getHero(){
+    let hero = {
+        race: getRandom(races),
+        maleOrFemale: getRandom(maleOrFemale),
+        name:'',
+        getName(){ 
+            if(hero.race === 'a Dwarf'){
+                hero.name = getRandom(dwarfNames) // statement for Dwarf (no Females)
+            } else if(hero.race === 'a Human' && hero.maleOrFemale === 'Male'){ //statement for Human Male
+                hero.name = getRandom(humanNamesMale)
+            } else if(hero.race === 'a Human' && hero.maleOrFemale === 'Female'){ //statement for Human Female
+                hero.name = getRandom(humanNamesFemale)
+            } else if(hero.race === 'an Elf' && hero.maleOrFemale === 'Male'){ //statement for Elf Male
+                hero.name = getRandom(elfNamesMale)
+            } else if(hero.race === 'an Elf' && hero.maleOrFemale === 'Female'){ // statement for Elf Female
+                hero.name = getRandom(elfNamesFemale)
+            } else if(hero.race === 'a Hobbit' && hero.maleOrFemale === 'Male'){ // statement for Hobbit Male
+                hero.name = getRandom(hobbitNamesMale)
+            } else if(hero.race === 'a Hobbit' && hero.maleOrFemale === 'Female'){ // statement for Hobbit Female
+                hero.name = getRandom(hobbitNamesFemale)
+            } else if(hero.race === 'an Orc'){ // statement for Orc (no Females)
+                hero.name = getRandom(orcNames)
+            }
+        },
+        weapon: getRandom(weapons),
+        ability: getRandom(abilities)
+    
+    }
+    hero.getName() // getName method to get corresponding Name
+    if(hero.maleOrFemale === 'Male' || hero.race === 'an Orc' || hero.race === 'a Dwarf'){ // Male form for all races
+        console.log(`
+    Your Hero name is: ${hero.name}!
+    He is ${hero.race}!
+    His weapon of choice is ${hero.weapon}! He is a champion of many great talents but his most powerful ability is: ${hero.ability}!`)
+    } else if(hero.maleOrFemale === 'Female' && hero.race !== 'an Orc' && hero.race !== 'a Dwarf'){ // Female form exclude races that are only Male
+        console.log(`
+    Your Heroine name is: ${hero.name}!
+    She is ${hero.race}!
+    Her weapon of choice is ${hero.weapon}! She is a champion of many great talents but her most powerful ability is: ${hero.ability}`)
+    }
+} 
+
+
+
+getHero()

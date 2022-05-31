@@ -1,4 +1,4 @@
-const races = ['a Dwarf', 'a Human', 'an Elf', 'a Hobbit', 'an Orc']
+const races = ['a Dwarf', 'a Human', 'an Elf', 'a Hobbit']
 
 // name packs for each race, Dwarves hid their females so no female dwarven heroes
 const dwarfNames = ['Anar', 'Balin', 'Beli', 'Bifur', 'Bláin', 'Bofur', 'Bombur', 'Borin',
@@ -81,6 +81,7 @@ function getRandom(array){
     return array[i]
 }
 
+let fellowshipHero 
 
 
 function getHero(){
@@ -103,8 +104,6 @@ function getHero(){
                 hero.name = getRandom(hobbitNamesMale)
             } else if(hero.race === 'a Hobbit' && hero.maleOrFemale === 'Female'){ // statement for Hobbit Female
                 hero.name = getRandom(hobbitNamesFemale)
-            } else if(hero.race === 'an Orc'){ // statement for Orc (no Females)
-                hero.name = getRandom(orcNames)
             }
         },
         weapon: getRandom(weapons),
@@ -112,19 +111,41 @@ function getHero(){
     
     }
     hero.getName() // getName method to get corresponding Name
+    fellowshipHero = hero // update variable to access object outside of function
+
     if(hero.maleOrFemale === 'Male' || hero.race === 'an Orc' || hero.race === 'a Dwarf'){ // Male form for all races
-        console.log(`
+        console.log( `
     Your Hero name is: ${hero.name}!
     He is ${hero.race}!
-    His weapon of choice is ${hero.weapon}! He is a champion of many great talents but his most powerful ability is: ${hero.ability}!`)
+    His weapon of choice is ${hero.weapon}! 
+    He is a champion of many great talents but his most powerful ability is: 
+    ${hero.ability}!`)
     } else if(hero.maleOrFemale === 'Female' && hero.race !== 'an Orc' && hero.race !== 'a Dwarf'){ // Female form exclude races that are only Male
-        console.log(`
+        console.log( `
     Your Heroine name is: ${hero.name}!
     She is ${hero.race}!
-    Her weapon of choice is ${hero.weapon}! She is a champion of many great talents but her most powerful ability is: ${hero.ability}`)
+    Her weapon of choice is ${hero.weapon}! 
+    She is a champion of many great talents but her most powerful ability is: 
+    ${hero.ability}`)
     }
 } 
 
 
+// creates 9 members of the fellowship of the ring
+function fellowship(){
+ for(i = 0; i < 9; i++){
+    getHero()
+}
+ }
 
-getHero()
+// create orc army of desired size
+function createOrcArmy(armySize){
+    if(typeof armySize === 'number' && armySize >= 2){
+    console.log(`You have created an army of: ${armySize} Orcs!`)
+    for(z = 1; z <= armySize; z++){
+        console.log(`Your Orc number ${z} name is: ${getRandom(orcNames)}. His favorite weapon is: ${getRandom(weapons)}!`)
+    }
+    } else {console.log('Enter a proper numerical value! (To have an army you need at least 2 Orcs).')}
+
+}
+

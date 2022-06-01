@@ -149,3 +149,7 @@ function createOrcArmy(armySize){
 
 }
 
+
+// write getHero() to get randomized single hero
+// write fellowship() to get randomized fellowship of heroes (9 members)
+// write createOrcArmy(put your desired army size here!) to get randomized Orc army

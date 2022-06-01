@@ -1,5 +1,5 @@
-# random_LOTR
-Random LoTR character generator.
+# Random Lord of the Rings character generator
+
 
 # Features
 - Create Your own Lord of The Rings hero using my random character generator. Your hero will be of random race and gender. He/She will be assigned race and gender appropriate name, random weapon and one special ability.
